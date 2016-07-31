@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>:)</title>
+	<style>
+		body { margin: 0; padding: 0; background: #000; }
+		audio { display: none; }
+		h1 {
+			color: #fff; width: 100%; text-align: center; margin-top: 260px; font-family: Helvetica; font-size: 240px;
+			text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+		}
+	</style>
+</head>
+<body>
+	<h1 id="title"></h1>
+	<audio id="beep" src="beep.mp3" preload="auto" controls></audio>
+	<audio id="music" src="music.m4a" preload="auto" controls></audio>
+
+	<script>
+		var iterations = 50;
+		var colors = ['#ff00ba', '#56b7cc', '#c0ff00', '#000000'];
+		var names = ['ROSA', 'BLÅ', 'GRÖN', 'SVART'];
+		var h1 = document.getElementById('title');
+		var music = document.getElementById('music');
+		var beep = document.getElementById('beep');
+
+		function iterate() {
+			var index = (Math.random() * 4) | 0;
+			document.body.style.backgroundColor = colors[index];
+			if (--iterations > 0) {
+				setTimeout(iterate, 100);
+			} else {
+				h1.innerText = names[index];
+				music.pause();
+				music.currentTime = 0;
+				beep.play();
+			}
+		}
+
+		document.onclick = function(e) {
+			music.pause();
+			music.currentTime = 0;
+			h1.innerText = '';
+			document.body.style.backgroundColor = '#000000';
+				music.play();
+			iterations = 53 + ((Math.random() * 100) | 0);
+			setTimeout(iterate, 500);
+		};
+
+	</script>
+</body>
+</html>
